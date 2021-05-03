@@ -29,6 +29,26 @@ func setupRouter() *gin.Engine {
 		}
 	})
 
+	r.LoadHTMLGlob("templates/*/*")
+	//router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
+
+	// r.GET("/index", func(c *gin.Context) {
+	// 	c.HTML(http.StatusOK, "index.tmpl", gin.H{
+	// 		"title": "Main website",
+	// 	})
+	// })
+
+	r.GET("/posts/index", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
+			"title": "Posts",
+		})
+	})
+	r.GET("/users/index", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "users/index.tmpl", gin.H{
+			"title": "Users",
+		})
+	})
+
 	// Authorized group (uses gin.BasicAuth() middleware)
 	// Same than:
 	// authorized := r.Group("/")
